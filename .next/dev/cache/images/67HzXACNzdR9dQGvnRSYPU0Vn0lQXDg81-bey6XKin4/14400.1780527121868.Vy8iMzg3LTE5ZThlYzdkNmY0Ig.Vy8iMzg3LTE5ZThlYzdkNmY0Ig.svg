@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" role="img" aria-label="COEP campus">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4338CA"/><stop offset="100%" stop-color="#312E81"/></linearGradient></defs>
+  <rect width="800" height="480" fill="url(#bg)"/>
+  <ellipse cx="400" cy="430" rx="300" ry="35" fill="#000" opacity="0.12"/>
+  <rect x="110" y="175" width="125" height="205" fill="#fff" opacity="0.9" rx="6"/>
+  <rect x="255" y="145" width="155" height="235" fill="#fff" opacity="0.95" rx="6"/>
+  <rect x="430" y="168" width="115" height="212" fill="#fff" opacity="0.86" rx="6"/>
+  <rect x="565" y="205" width="90" height="175" fill="#fff" opacity="0.82" rx="6"/>
+  <text x="400" y="72" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="26" font-weight="700">COEP Pune</text>
+</svg>

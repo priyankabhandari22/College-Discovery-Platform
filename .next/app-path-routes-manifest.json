@@ -1,0 +1,9 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/college/[id]/page": "/college/[id]",
+  "/compare/page": "/compare",
+  "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
+  "/predictor/page": "/predictor"
+}

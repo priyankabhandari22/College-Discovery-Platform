@@ -1,0 +1,140 @@
+[
+  {
+    "id": "1",
+    "name": "Indian Institute of Technology (IIT) Bombay",
+    "logo": "/colleges/1-logo.svg",
+    "image": "/colleges/1-campus.svg",
+    "location": "Mumbai, Maharashtra",
+    "rating": 4.8,
+    "fees": 210000,
+    "placementPercentage": 95,
+    "description": "IIT Bombay is a premier engineering institute in India, known for its excellence in education and research. Established in 1958, it is a Dream destination for engineering aspirants.",
+    "accreditation": "Institute of Eminence",
+    "established": 1958,
+    "stream": "Engineering",
+    "courses": [
+      { "name": "B.Tech Computer Science", "duration": "4 Years", "fees": 210000 },
+      { "name": "B.Tech Electrical Engineering", "duration": "4 Years", "fees": 210000 }
+    ],
+    "placements": {
+      "avgCTC": 2500000,
+      "highestCTC": 12000000,
+      "placementPercentage": 95,
+      "topRecruiters": ["Google", "Microsoft", "Uber", "Goldman Sachs"]
+    },
+    "reviews": [
+      {
+        "studentName": "Rahul Sharma",
+        "rating": 5,
+        "comment": "Amazing culture and peer group.",
+        "pros": ["Brilliant Peer Group", "Excellent Placements"],
+        "cons": ["Heavy Academic Load"]
+      }
+    ],
+    "ratingBreakdown": {
+      "faculty": 4.9, "campus": 4.7, "placements": 5.0, "infrastructure": 4.8, "valueForMoney": 4.6
+    },
+    "cutoffs": {
+      "JEE Main": { "min": 1, "max": 500 },
+      "MHT-CET": { "min": 1, "max": 100 }
+    }
+  },
+  {
+    "id": "2",
+    "name": "Lady Shri Ram College for Women (LSR)",
+    "logo": "/colleges/2-logo.svg",
+    "image": "/colleges/2-campus.svg",
+    "location": "New Delhi, Delhi",
+    "rating": 4.7,
+    "fees": 25000,
+    "placementPercentage": 88,
+    "description": "One of the most prestigious liberal arts colleges in India.",
+    "accreditation": "UGC Grade A++",
+    "established": 1956,
+    "stream": "Arts",
+    "courses": [
+      { "name": "BA Economics Hons", "duration": "3 Years", "fees": 25000 }
+    ],
+    "placements": {
+      "avgCTC": 850000, "highestCTC": 4000000, "placementPercentage": 88, "topRecruiters": ["McKinsey", "KPMG"]
+    },
+    "reviews": [],
+    "ratingBreakdown": { "faculty": 4.8, "campus": 4.2, "placements": 4.5, "infrastructure": 4.0, "valueForMoney": 4.9 },
+    "cutoffs": {}
+  },
+  {
+    "id": "3",
+    "name": "Shri Ram College of Commerce (SRCC)",
+    "logo": "/colleges/3-logo.svg",
+    "image": "/colleges/3-campus.svg",
+    "location": "New Delhi, Delhi",
+    "rating": 4.9,
+    "fees": 30000,
+    "placementPercentage": 92,
+    "description": "The top-ranked commerce college in India.",
+    "accreditation": "UGC Grade A++",
+    "established": 1926,
+    "stream": "Commerce",
+    "courses": [
+      { "name": "B.Com Hons", "duration": "3 Years", "fees": 30000 }
+    ],
+    "placements": {
+      "avgCTC": 1200000, "highestCTC": 3500000, "placementPercentage": 92, "topRecruiters": ["BCG", "Bain & Co"]
+    },
+    "reviews": [],
+    "ratingBreakdown": { "faculty": 4.7, "campus": 4.1, "placements": 5.0, "infrastructure": 4.3, "valueForMoney": 5.0 },
+    "cutoffs": {}
+  },
+  {
+    "id": "4",
+    "name": "COEP Technological University",
+    "logo": "/colleges/4-logo.svg",
+    "image": "/colleges/4-campus.svg",
+    "location": "Pune, Maharashtra",
+    "rating": 4.5,
+    "fees": 120000,
+    "placementPercentage": 90,
+    "description": "One of the oldest engineering colleges in Asia.",
+    "accreditation": "Autonomous Institution",
+    "established": 1854,
+    "stream": "Engineering",
+    "courses": [
+      { "name": "B.Tech CSE", "duration": "4 Years", "fees": 120000 }
+    ],
+    "placements": {
+      "avgCTC": 1000000, "highestCTC": 4500000, "placementPercentage": 90, "topRecruiters": ["TCS", "Infosys"]
+    },
+    "reviews": [],
+    "ratingBreakdown": { "faculty": 4.4, "campus": 4.3, "placements": 4.6, "infrastructure": 4.2, "valueForMoney": 4.8 },
+    "cutoffs": {
+      "JEE Main": { "min": 2000, "max": 15000 },
+      "MHT-CET": { "min": 500, "max": 2500 }
+    }
+  },
+  {
+    "id": "7",
+    "name": "MIT World Peace University",
+    "logo": "/colleges/7-logo.svg",
+    "image": "/colleges/7-campus.svg",
+    "location": "Pune, Maharashtra",
+    "rating": 4.1,
+    "fees": 350000,
+    "placementPercentage": 78,
+    "description": "Private university focused on holistic education and peace studies.",
+    "accreditation": "State Private University",
+    "established": 1983,
+    "stream": "Engineering",
+    "courses": [
+      { "name": "B.Tech AI & DS", "duration": "4 Years", "fees": 350000 }
+    ],
+    "placements": {
+      "avgCTC": 650000, "highestCTC": 3000000, "placementPercentage": 78, "topRecruiters": ["Wipro", "TCS"]
+    },
+    "reviews": [],
+    "ratingBreakdown": { "faculty": 4.0, "campus": 4.5, "placements": 3.8, "infrastructure": 4.6, "valueForMoney": 3.5 },
+    "cutoffs": {
+      "JEE Main": { "min": 15000, "max": 80000 },
+      "MHT-CET": { "min": 2500, "max": 15000 }
+    }
+  }
+]

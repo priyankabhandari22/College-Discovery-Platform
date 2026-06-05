@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" role="img" aria-label="MIT WPU campus">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7C3AED"/><stop offset="100%" stop-color="#5B21B6"/></linearGradient></defs>
+  <rect width="800" height="480" fill="url(#bg)"/>
+  <ellipse cx="400" cy="430" rx="300" ry="35" fill="#000" opacity="0.12"/>
+  <rect x="130" y="195" width="115" height="185" fill="#fff" opacity="0.88" rx="6"/>
+  <rect x="265" y="155" width="145" height="225" fill="#fff" opacity="0.94" rx="6"/>
+  <rect x="430" y="175" width="135" height="205" fill="#fff" opacity="0.9" rx="6"/>
+  <rect x="585" y="215" width="85" height="165" fill="#fff" opacity="0.8" rx="6"/>
+  <text x="400" y="72" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="24" font-weight="700">MIT WPU Pune</text>
+</svg>

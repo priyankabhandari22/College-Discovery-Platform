@@ -1,0 +1,14 @@
+{
+  "name": "edutrack",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w edutrack-frontend",
+    "build": "npm run build -w edutrack-frontend",
+    "test": "npm run test -w edutrack-frontend",
+    "lint": "npm run lint -w edutrack-frontend"
+  }
+}

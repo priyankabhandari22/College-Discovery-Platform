@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" role="img" aria-label="IIT Guwahati campus">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#831843"/><stop offset="100%" stop-color="#83184380"/></linearGradient></defs>
+  <rect width="800" height="480" fill="url(#bg)"/>
+  <ellipse cx="400" cy="430" rx="300" ry="35" fill="#000" opacity="0.12"/>
+  <rect x="110" y="180" width="130" height="200" fill="#fff" opacity="0.88" rx="6"/>
+  <rect x="260" y="140" width="160" height="240" fill="#fff" opacity="0.95" rx="6"/>
+  <rect x="440" y="165" width="120" height="215" fill="#fff" opacity="0.85" rx="6"/>
+  <rect x="580" y="210" width="90" height="170" fill="#fff" opacity="0.8" rx="6"/>
+  <text x="400" y="72" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="26" font-weight="700">IIT Guwahati</text>
+</svg>
