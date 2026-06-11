@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: edutrack-backend
+    runtime: node
+    repo: https://github.com/your-username/edutrack
+    branch: main
+    rootDir: backend
+    buildCommand: npm run build
+    startCommand: npm run start
+    envVars:
+      - key: PORT
+        value: 4000
+      - key: CORS_ORIGIN
+        value: https://edutrack.vercel.app
+      - key: CollegeDataSet
+        sync: false
+    healthCheckPath: /api/health

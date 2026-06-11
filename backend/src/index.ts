@@ -13,8 +13,8 @@ app.use(
 );
 app.use(express.json());
 
-app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok', service: 'edutrack-backend' });
+app.use('/api/health', (_req, res) => {
+  res.status(200).json({ message: 'API is healthy' });
 });
 
 app.use('/api/colleges', collegesRouter);
