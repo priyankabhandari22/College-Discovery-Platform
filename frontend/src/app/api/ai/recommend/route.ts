@@ -54,7 +54,12 @@ function generateLocalAdvice(topColleges: NonNullable<ReturnType<typeof getColle
 
 export async function POST(request: NextRequest) {
   try {
-    const genAI = getGenAI();
+    let genAI: GoogleGenerativeAI | null = null;
+    try {
+      genAI = getGenAI();
+    } catch {
+      // Key not set — will fall back to local advice
+    }
 
     const body = await request.json();
     const { exam, rank, marks, maxMarks, percentile, preferredLocation, preferredStream } = body;
@@ -106,9 +111,10 @@ export async function POST(request: NextRequest) {
 
     // Try Gemini, fall back to local advice on quota error
     let aiAdvice: string;
-    try {
-      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-      const prompt = `You are an experienced college admission counselor for Indian engineering and professional colleges.
+    if (genAI) {
+      try {
+        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+        const prompt = `You are an experienced college admission counselor for Indian engineering and professional colleges.
 
 Student Profile:
 - Exam: ${exam}
@@ -128,7 +134,10 @@ Based on the student's rank and preferences, analyze these colleges and provide:
 Format your response as plain text with clear sections. Be honest and data-driven. Don't recommend colleges that aren't in the data above.`;
       const result = await model.generateContent(prompt);
       aiAdvice = result.response.text();
-    } catch {
+      } catch {
+        aiAdvice = generateLocalAdvice(topColleges, resolvedRank, exam);
+      }
+    } else {
       aiAdvice = generateLocalAdvice(topColleges, resolvedRank, exam);
     }
 
