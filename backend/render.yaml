@@ -2,7 +2,7 @@ services:
   - type: web
     name: edutrack-backend
     runtime: node
-    repo: https://github.com/your-username/edutrack
+    repo: https://github.com/priyankabhandari22/College-Discovery-Platform.git
     branch: main
     rootDir: backend
     buildCommand: npm run build
@@ -11,7 +11,7 @@ services:
       - key: PORT
         value: 4000
       - key: CORS_ORIGIN
-        value: https://edutrack.vercel.app
+        value: https://college-discovery-platform-frontend-rho.vercel.app
       - key: CollegeDataSet
         sync: false
     healthCheckPath: /api/health

@@ -135,7 +135,65 @@ edutrack/
 | **Neon PostgreSQL** | User accounts, saved colleges, saved comparisons | Auth, saved page, cloud sync |
 
 
-## Quick Start
+## Deployment
+
+### Frontend → Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+
+1. Push the repo to GitHub
+2. Import the **frontend/** directory as a new Vercel project
+3. Set these environment variables in Vercel dashboard:
+
+| Variable | Value |
+|---|---|
+| `COLLEGEDB_API_KEY` | Your CollegeDB API key |
+| `DATABASE_URL` | Your Neon PostgreSQL connection string |
+| `AUTH_SECRET` | Run `openssl rand -hex 32` locally |
+| `NEXT_PUBLIC_GOOGLE_AUTH_ENABLED` | `false` (or `true` with OAuth client vars) |
+| `GOOGLE_CLIENT_ID` | _(optional)_ Google OAuth client ID |
+| `GOOGLE_CLIENT_SECRET` | _(optional)_ Google OAuth client secret |
+
+4. Deploy — `vercel.json` is already configured with `npx prisma generate && next build`
+
+> **Note:** The frontend's NextAuth routes (`/api/auth/*`) talk directly to Neon DB via Prisma. No backend server is required for auth or saved colleges.
+
+### Backend → Render.com
+
+1. Push the repo to GitHub
+2. In Render dashboard → **New Web Service** → connect your repo
+3. Configure:
+
+| Setting | Value |
+|---|---|
+| **Root Directory** | `backend` |
+| **Build Command** | `npm run build` |
+| **Start Command** | `npm run start` |
+| **Health Check Path** | `/api/health` |
+
+4. Add these environment variables in Render:
+
+| Variable | Value |
+|---|---|
+| `PORT` | `4000` |
+| `CORS_ORIGIN` | `https://edutrack.vercel.app` |
+| `CollegeDataSet` | Your CollegeDB dataset key |
+
+5. Deploy
+
+### Uptime Monitoring
+
+After deploying both, set up [Uptime Robot](https://uptimerobot.com) to ping the backend health endpoint every 5 minutes:
+
+- **Monitor Type**: HTTP(s)
+- **URL**: `https://your-backend.onrender.com/api/health`
+- **Interval**: 5 minutes
+
+This keeps the free Render instance awake and alerts you if it goes down.
+
+---
+
+## Local Development
 
 ### Prerequisites
 
@@ -143,7 +201,7 @@ edutrack/
 - npm 9+
 - PostgreSQL (optional — seed data works without a database)
 
-### 1. Install
+### Setup
 
 ```bash
 git clone <repo-url>
@@ -151,11 +209,9 @@ cd edutrack
 npm install
 ```
 
+### Database (optional)
 
-
-### 2. Database 
-
-Skip this step to use seed data without a database. With a database:
+Skip this to use seed data without a database:
 
 ```bash
 cd frontend
@@ -163,17 +219,17 @@ npx prisma db push       # Create tables
 npx prisma db seed       # Seed 42 colleges + test users
 ```
 
-Test users after seeding: `alice@test.com`, `bob@test.com`, `charlie@test.com` (password: `Test1234` for all).
+Test users: `alice@test.com`, `bob@test.com`, `charlie@test.com` (password: `Test1234`).
 
-### 3. Run
+### Run
 
 ```bash
-npm run dev
+npm run dev        # Frontend on :3000
+# In another terminal:
+cd backend && npm run dev   # Backend on :4000
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
-
-### 4. Build
+### Build
 
 ```bash
 npm run build
@@ -191,6 +247,7 @@ npm run build
 | `npm test` | Run Vitest |
 | `npm run db:seed` | Seed database with colleges + test data |
 | `npm run db:studio` | Open Prisma Studio (DB GUI) |
+| `cd backend && npm run dev` | Start Express backend on port 4000 |
 
 ---
 

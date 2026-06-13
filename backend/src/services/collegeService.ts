@@ -46,9 +46,17 @@ export function getCollegesByIds(ids: string[]): College[] {
 }
 
 export function predictColleges(exam: string, rank: number): College[] {
-  return colleges.filter((c) => {
-    const cutoff = c.cutoffs?.[exam];
-    if (!cutoff) return false;
-    return rank >= cutoff.min && rank <= cutoff.max * 1.1;
-  });
+  const withCutoff = colleges.filter((c) => c.cutoffs?.[exam]);
+
+  // Tier 1: exact match (max * 1.1)
+  let results = withCutoff.filter((c) => rank >= c.cutoffs![exam]!.min && rank <= c.cutoffs![exam]!.max * 1.1);
+  if (results.length > 0) return results;
+
+  // Tier 2: reach (max * 3)
+  results = withCutoff.filter((c) => rank >= c.cutoffs![exam]!.min && rank <= c.cutoffs![exam]!.max * 3)
+    .sort((a, b) => b.cutoffs![exam]!.max - a.cutoffs![exam]!.max);
+  if (results.length > 0) return results;
+
+  // Tier 3: broadest (top 10)
+  return withCutoff.sort((a, b) => b.cutoffs![exam]!.max - a.cutoffs![exam]!.max).slice(0, 10);
 }

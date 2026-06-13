@@ -100,7 +100,7 @@ async function main() {
       id: 'cmp-alice-2',
       userId: alice.id,
       label: 'Top Mumbai Colleges',
-      collegeIds: ['clg-iitb', 'clg-vjti', 'clg-spit'],
+      collegeIds: ['clg-iitb', 'clg-vjti', 'clg-dj'],
     },
     update: {},
   });

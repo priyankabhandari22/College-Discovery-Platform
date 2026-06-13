@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import {
   ENGINEERING_STREAMS,
   FEES_MAX,
@@ -17,6 +18,20 @@ import type { EngineeringStream, NaacGrade, Ownership } from '@/types/college';
 interface FilterSidebarProps {
   filters: ListingFiltersState;
   onChange: (patch: Partial<ListingFiltersState>) => void;
+}
+
+function CollapsibleSection({ title, defaultOpen, children }: { title: string; defaultOpen?: boolean; children: React.ReactNode }) {
+  const [open, setOpen] = useState(defaultOpen ?? false);
+  return (
+    <div>
+      <button type="button" onClick={() => setOpen(!open)}
+        className="mb-1 flex w-full items-center justify-between text-sm font-bold uppercase tracking-wider text-slate-500">
+        {title}
+        <span className={`transition-transform ${open ? 'rotate-180' : ''}`}>▾</span>
+      </button>
+      {open && <div className="space-y-2">{children}</div>}
+    </div>
+  );
 }
 
 export default function FilterSidebar({ filters, onChange }: FilterSidebarProps) {
@@ -41,14 +56,17 @@ export default function FilterSidebar({ filters, onChange }: FilterSidebarProps)
     onChange({ naac: next });
   };
 
+  const activeLocationCount = filters.location.length;
+  const activeNaacCount = filters.naac.length;
+  const activeStreamCount = filters.stream.length;
+
   return (
     <aside
       className="w-full shrink-0 space-y-6 rounded-xl border border-slate-200 bg-white p-4 lg:w-64 xl:w-72"
       aria-label="College filters"
     >
-      <div>
-        <h2 className="mb-3 text-sm font-bold uppercase tracking-wider text-slate-500">Location</h2>
-        <div className="space-y-2">
+      <CollapsibleSection title={`Location${activeLocationCount ? ` (${activeLocationCount})` : ''}`}>
+        <div className="max-h-64 space-y-2 overflow-y-auto">
           {LOCATION_OPTIONS.map(({ city, state }) => {
             const key = `${city}|${state}`;
             const id = `loc-${city}`;
@@ -63,7 +81,7 @@ export default function FilterSidebar({ filters, onChange }: FilterSidebarProps)
             );
           })}
         </div>
-      </div>
+      </CollapsibleSection>
 
       <div>
         <Label htmlFor="fees-range" className="mb-3 block text-sm font-bold uppercase tracking-wider text-slate-500">
@@ -80,26 +98,20 @@ export default function FilterSidebar({ filters, onChange }: FilterSidebarProps)
         />
       </div>
 
-      <div>
-        <h2 className="mb-3 text-sm font-bold uppercase tracking-wider text-slate-500">NAAC grade</h2>
-        <div className="space-y-2">
-          {NAAC_GRADES.map((grade) => (
-            <Checkbox
-              key={grade}
-              id={`naac-${grade}`}
-              label={grade}
-              checked={filters.naac.includes(grade)}
-              onChange={() => toggleNaac(grade)}
-            />
-          ))}
-        </div>
-      </div>
+      <CollapsibleSection title={`NAAC grade${activeNaacCount ? ` (${activeNaacCount})` : ''}`}>
+        {NAAC_GRADES.map((grade) => (
+          <Checkbox
+            key={grade}
+            id={`naac-${grade}`}
+            label={grade}
+            checked={filters.naac.includes(grade)}
+            onChange={() => toggleNaac(grade)}
+          />
+        ))}
+      </CollapsibleSection>
 
-      <div>
+      <CollapsibleSection title={`Ownership${filters.ownership ? ` (${filters.ownership})` : ''}`}>
         <fieldset>
-          <legend className="mb-3 text-sm font-bold uppercase tracking-wider text-slate-500">
-            Ownership
-          </legend>
           <div className="space-y-2">
             {OWNERSHIP_OPTIONS.map((type) => (
               <label key={type} className="flex cursor-pointer items-center gap-2 text-sm text-slate-600">
@@ -125,22 +137,19 @@ export default function FilterSidebar({ filters, onChange }: FilterSidebarProps)
             </label>
           </div>
         </fieldset>
-      </div>
+      </CollapsibleSection>
 
-      <div>
-        <h2 className="mb-3 text-sm font-bold uppercase tracking-wider text-slate-500">Stream</h2>
-        <div className="space-y-2">
-          {ENGINEERING_STREAMS.map((stream) => (
-            <Checkbox
-              key={stream}
-              id={`stream-${stream}`}
-              label={stream}
-              checked={filters.stream.includes(stream)}
-              onChange={() => toggleStream(stream)}
-            />
-          ))}
-        </div>
-      </div>
+      <CollapsibleSection title={`Stream${activeStreamCount ? ` (${activeStreamCount})` : ''}`}>
+        {ENGINEERING_STREAMS.map((stream) => (
+          <Checkbox
+            key={stream}
+            id={`stream-${stream}`}
+            label={stream}
+            checked={filters.stream.includes(stream)}
+            onChange={() => toggleStream(stream)}
+          />
+        ))}
+      </CollapsibleSection>
     </aside>
   );
 }

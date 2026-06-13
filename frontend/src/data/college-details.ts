@@ -922,10 +922,31 @@ export function getCollegeDetailsByIds(ids: string[]): College[] {
   return COLLEGE_DETAILS.filter((c) => ids.includes(c.id));
 }
 
-export function predictCollegesByRank(exam: string, rank: number): College[] {
-  return COLLEGE_DETAILS.filter((c) => {
-    const cutoff = c.cutoffs?.[exam];
-    if (!cutoff) return false;
+export interface PredictionResult {
+  colleges: College[];
+  tier: 'exact' | 'reach' | 'broadest';
+}
+
+export function predictCollegesByRank(exam: string, rank: number): PredictionResult {
+  const withCutoff = COLLEGE_DETAILS.filter((c) => c.cutoffs?.[exam]);
+
+  // Tier 1: exact cutoff match (within 1.1x)
+  let matches = withCutoff.filter((c) => {
+    const cutoff = c.cutoffs![exam]!;
     return rank >= cutoff.min && rank <= cutoff.max * 1.1;
   });
+  if (matches.length > 0) return { colleges: matches, tier: 'exact' };
+
+  // Tier 2: reach colleges (within 3x)
+  matches = withCutoff.filter((c) => {
+    const cutoff = c.cutoffs![exam]!;
+    return rank >= cutoff.min && rank <= cutoff.max * 3;
+  });
+  if (matches.length > 0) {
+    return { colleges: matches.sort((a, b) => (b.cutoffs![exam]!.max) - (a.cutoffs![exam]!.max)), tier: 'reach' };
+  }
+
+  // Tier 3: broadest cutoffs for this exam (top 10 by max cutoff)
+  matches = withCutoff.sort((a, b) => (b.cutoffs![exam]!.max) - (a.cutoffs![exam]!.max)).slice(0, 10);
+  return { colleges: matches, tier: 'broadest' };
 }

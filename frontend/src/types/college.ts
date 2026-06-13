@@ -1,5 +1,5 @@
 /** Engineering branch streams for MHT-CET / JEE listing filters */
-export type EngineeringStream = 'CS' | 'Mech' | 'Civil' | 'ENTC';
+export type EngineeringStream = 'CS' | 'IT' | 'ECE' | 'EXTC' | 'Mech' | 'Civil' | 'ENTC' | 'AIML' | 'AIDS' | 'Cybersecurity';
 
 export type Ownership = 'Government' | 'Aided' | 'Private' | 'Deemed';
 
@@ -51,7 +51,7 @@ export interface CollegesApiResponse {
   limit: number;
 }
 
-export const ENGINEERING_STREAMS: EngineeringStream[] = ['CS', 'Mech', 'Civil', 'ENTC'];
+export const ENGINEERING_STREAMS: EngineeringStream[] = ['CS', 'IT', 'ECE', 'EXTC', 'Mech', 'Civil', 'ENTC', 'AIML', 'AIDS', 'Cybersecurity'];
 
 export const OWNERSHIP_OPTIONS: Ownership[] = [
   'Government',

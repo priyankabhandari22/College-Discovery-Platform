@@ -17,7 +17,12 @@ export const getCollegesByIds = async (ids: string[]): Promise<College[]> => {
   return colleges.map(resolveCollegeMedia);
 };
 
-export const predictColleges = async (exam: string, rank: number): Promise<College[]> => {
-  const colleges = predictCollegesByRank(exam, rank);
-  return colleges.map(resolveCollegeMedia);
+export interface PredictResult {
+  colleges: College[];
+  tier: 'exact' | 'reach' | 'broadest';
+}
+
+export const predictColleges = async (exam: string, rank: number): Promise<PredictResult> => {
+  const { colleges, tier } = predictCollegesByRank(exam, rank);
+  return { colleges: colleges.map(resolveCollegeMedia), tier };
 };

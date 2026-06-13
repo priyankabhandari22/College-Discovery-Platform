@@ -7,6 +7,7 @@ import {
   GraduationCap,
   GitCompare,
   Calculator,
+  MessageSquare,
   Menu,
   X,
   Home,
@@ -23,6 +24,7 @@ const navLinks = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/compare', label: 'Compare', icon: GitCompare },
   { href: '/predictor', label: 'Rank Predictor', icon: Calculator },
+  { href: '/discussions', label: 'Q&A', icon: MessageSquare },
 ] as const;
 
 export default function Navbar() {
